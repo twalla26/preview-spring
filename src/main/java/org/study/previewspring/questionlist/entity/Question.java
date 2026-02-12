@@ -19,12 +19,12 @@ public class Question {
     @Column(name = "`index`", nullable = false)
     private Integer index;
 
+    @Column(name = "content", nullable = false, length = 200)
+    private String content;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "question_list_id", nullable = false)
     private QuestionList questionList;
-
-    @Column(name = "content", nullable = false, length = 200)
-    private String content;
 
 }
