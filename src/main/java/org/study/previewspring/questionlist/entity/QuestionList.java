@@ -6,8 +6,8 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.study.previewspring.user.User;
-import org.study.previewspring.user.UserQuestionList;
+import org.study.previewspring.user.entity.User;
+import org.study.previewspring.user.entity.UserQuestionList;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

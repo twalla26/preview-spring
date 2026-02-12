@@ -1,4 +1,4 @@
-package org.study.previewspring.user;
+package org.study.previewspring.common.enums;
 
 public enum LoginType {
     local,

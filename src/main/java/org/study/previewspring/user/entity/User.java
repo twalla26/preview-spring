@@ -1,9 +1,9 @@
-package org.study.previewspring.user;
+package org.study.previewspring.user.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
+import org.study.previewspring.common.enums.LoginType;
 import org.study.previewspring.questionlist.entity.QuestionList;
 
 import java.util.LinkedHashSet;

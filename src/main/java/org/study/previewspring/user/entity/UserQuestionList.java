@@ -1,4 +1,4 @@
-package org.study.previewspring.user;
+package org.study.previewspring.user.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
