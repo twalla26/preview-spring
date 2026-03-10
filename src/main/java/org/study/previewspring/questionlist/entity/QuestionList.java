@@ -29,7 +29,7 @@ public class QuestionList {
 
     @ColumnDefault("0")
     @Column(name = "`usage`", nullable = false)
-    private Integer usage;
+    private Integer usage = 0;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -49,10 +49,9 @@ public class QuestionList {
     private Set<Category> categories = new LinkedHashSet<>();
 
     @Builder(access = AccessLevel.PRIVATE)
-    private QuestionList(String title, Boolean isPublic, Integer usage, User user) {
+    private QuestionList(String title, Boolean isPublic, User user) {
         this.title = title;
         this.isPublic = isPublic;
-        this.usage = (usage != null) ? usage : 0;
         this.user = user;
     }
 
@@ -60,7 +59,6 @@ public class QuestionList {
         return QuestionList.builder()
                 .title(title)
                 .isPublic(isPublic)
-                .usage(0)
                 .user(user)
                 .build();
     }
