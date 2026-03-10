@@ -59,7 +59,7 @@ public class User {
         this.username = username;
         this.githubId = githubId;
         this.refreshToken = refreshToken;
-        this.loginType = (loginType != null) ? loginType : LoginType.local;
+        this.loginType = loginType;
         this.avatarUrl = avatarUrl;
     }
 
@@ -68,7 +68,7 @@ public class User {
                 .loginId(loginId)
                 .passwordHash(passwordHash)
                 .username(username)
-                .loginType(LoginType.local)
+                .loginType(LoginType.LOCAL)
                 .build();
     }
 
@@ -77,7 +77,7 @@ public class User {
                 .githubId(githubId)
                 .passwordHash(passwordHash)
                 .username(username)
-                .loginType(LoginType.github)
+                .loginType(LoginType.GITHUB)
                 .build();
     }
 
