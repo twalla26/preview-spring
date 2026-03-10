@@ -1,16 +1,15 @@
 package org.study.previewspring.user.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.study.previewspring.questionlist.entity.QuestionList;
 
 @Getter
-@Setter
 @Entity
 @Table(name = "user_question_list")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserQuestionList {
     @EmbeddedId
     private UserQuestionListId id = new UserQuestionListId();
@@ -26,5 +25,12 @@ public class UserQuestionList {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "question_list_id", nullable = false)
     private QuestionList questionList;
+
+    @Builder
+    public UserQuestionList(User user, QuestionList questionList) {
+        this.user = user;
+        this.questionList = questionList;
+        this.id = new UserQuestionListId(user.getId(), questionList.getId());
+    }
 
 }

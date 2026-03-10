@@ -1,8 +1,7 @@
 package org.study.previewspring.questionlist.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -13,9 +12,9 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Getter
-@Setter
 @Entity
 @Table(name = "question_list")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class QuestionList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,4 +47,13 @@ public class QuestionList {
             joinColumns = @JoinColumn(name = "question_list_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new LinkedHashSet<>();
+
+    @Builder
+    public QuestionList(String title, Boolean isPublic, Integer usage, User user) {
+        this.title = title;
+        this.isPublic = isPublic;
+        this.usage = (usage != null) ? usage : 0;
+        this.user = user;
+    }
+
 }

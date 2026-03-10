@@ -1,15 +1,14 @@
 package org.study.previewspring.questionlist.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
-@Setter
 @Entity
 @Table(name = "question")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +25,12 @@ public class Question {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "question_list_id", nullable = false)
     private QuestionList questionList;
+
+    @Builder
+    public Question(Integer index, String content, QuestionList questionList) {
+        this.index = index;
+        this.content = content;
+        this.questionList = questionList;
+    }
 
 }

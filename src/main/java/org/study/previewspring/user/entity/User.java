@@ -1,8 +1,7 @@
 package org.study.previewspring.user.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.study.previewspring.common.enums.LoginType;
 import org.study.previewspring.questionlist.entity.QuestionList;
 
@@ -10,9 +9,9 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Getter
-@Setter
 @Entity
 @Table(name = "user")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,5 +45,20 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserQuestionList> scrappedQuestionLists = new LinkedHashSet<>();
+
+    @Builder
+    public User(String loginId,
+                String passwordHash,
+                String username,
+                Integer githubId,
+                LoginType loginType,
+                String avatarUrl) {
+        this.loginId = loginId;
+        this.passwordHash = passwordHash;
+        this.username = username;
+        this.githubId = githubId;
+        this.loginType = (loginType != null) ? loginType : LoginType.local;
+        this.avatarUrl = avatarUrl;
+    }
 
 }
