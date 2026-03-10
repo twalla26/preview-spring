@@ -48,12 +48,21 @@ public class QuestionList {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new LinkedHashSet<>();
 
-    @Builder
-    public QuestionList(String title, Boolean isPublic, Integer usage, User user) {
+    @Builder(access = AccessLevel.PRIVATE)
+    private QuestionList(String title, Boolean isPublic, Integer usage, User user) {
         this.title = title;
         this.isPublic = isPublic;
         this.usage = (usage != null) ? usage : 0;
         this.user = user;
+    }
+
+    public static QuestionList create(String title, Boolean isPublic, User user) {
+        return QuestionList.builder()
+                .title(title)
+                .isPublic(isPublic)
+                .usage(0)
+                .user(user)
+                .build();
     }
 
 }

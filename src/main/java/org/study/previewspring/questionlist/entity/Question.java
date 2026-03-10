@@ -26,11 +26,19 @@ public class Question {
     @JoinColumn(name = "question_list_id", nullable = false)
     private QuestionList questionList;
 
-    @Builder
-    public Question(Integer index, String content, QuestionList questionList) {
+    @Builder(access = AccessLevel.PRIVATE)
+    private Question(Integer index, String content, QuestionList questionList) {
         this.index = index;
         this.content = content;
         this.questionList = questionList;
+    }
+
+    public static Question create(Integer index, String content, QuestionList questionList) {
+        return Question.builder()
+                .index(index)
+                .content(content)
+                .questionList(questionList)
+                .build();
     }
 
 }

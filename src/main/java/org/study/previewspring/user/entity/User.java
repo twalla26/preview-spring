@@ -46,19 +46,43 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserQuestionList> scrappedQuestionLists = new LinkedHashSet<>();
 
-    @Builder
-    public User(String loginId,
+    @Builder(access = AccessLevel.PRIVATE)
+    private User(String loginId,
                 String passwordHash,
                 String username,
                 Integer githubId,
+                String refreshToken,
                 LoginType loginType,
                 String avatarUrl) {
         this.loginId = loginId;
         this.passwordHash = passwordHash;
         this.username = username;
         this.githubId = githubId;
+        this.refreshToken = refreshToken;
         this.loginType = (loginType != null) ? loginType : LoginType.local;
         this.avatarUrl = avatarUrl;
+    }
+
+    public static User createLocalUser(String loginId, String passwordHash, String username) {
+        return User.builder()
+                .loginId(loginId)
+                .passwordHash(passwordHash)
+                .username(username)
+                .loginType(LoginType.local)
+                .build();
+    }
+
+    public static User createGithubUser(Integer githubId, String passwordHash, String username) {
+        return User.builder()
+                .githubId(githubId)
+                .passwordHash(passwordHash)
+                .username(username)
+                .loginType(LoginType.github)
+                .build();
+    }
+
+    public void updateRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 
 }

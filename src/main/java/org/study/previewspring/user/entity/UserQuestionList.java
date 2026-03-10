@@ -26,11 +26,18 @@ public class UserQuestionList {
     @JoinColumn(name = "question_list_id", nullable = false)
     private QuestionList questionList;
 
-    @Builder
-    public UserQuestionList(User user, QuestionList questionList) {
+    @Builder(access = AccessLevel.PRIVATE)
+    private UserQuestionList(User user, QuestionList questionList) {
         this.user = user;
         this.questionList = questionList;
-        this.id = new UserQuestionListId(user.getId(), questionList.getId());
+        this.id = UserQuestionListId.of(user.getId(), questionList.getId());
+    }
+
+    public static UserQuestionList create(User user, QuestionList questionList) {
+        return UserQuestionList.builder()
+                .user(user)
+                .questionList(questionList)
+                .build();
     }
 
 }

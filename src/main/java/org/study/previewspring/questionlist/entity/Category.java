@@ -16,9 +16,12 @@ public class Category {
     @Column(name = "name", nullable = false, length = 20)
     private String name;
 
-    @Builder
-    public Category(String name) {
+    private Category(String name) {
         this.name = name;
+    }
+
+    public static Category create(String name) {
+        return new Category(name);
     }
 
 }
