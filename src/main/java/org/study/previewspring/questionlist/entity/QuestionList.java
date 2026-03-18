@@ -42,12 +42,6 @@ public class QuestionList {
     @OneToMany(mappedBy = "questionList", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserQuestionList> scrappedByUsers = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(name = "question_list_category",
-            joinColumns = @JoinColumn(name = "question_list_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private List<Category> categories = new ArrayList<>();
-
     @Builder(access = AccessLevel.PRIVATE)
     private QuestionList(String title, Boolean isPublic, User user) {
         this.title = title;
