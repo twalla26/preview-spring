@@ -5,8 +5,8 @@ import lombok.*;
 import org.study.previewspring.common.enums.LoginType;
 import org.study.previewspring.questionlist.entity.QuestionList;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -41,10 +41,10 @@ public class User {
     private String avatarUrl;
 
     @OneToMany(mappedBy = "user")
-    private Set<QuestionList> questionLists = new LinkedHashSet<>();
+    private List<QuestionList> questionLists = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<UserQuestionList> scrappedQuestionLists = new LinkedHashSet<>();
+    private List<UserQuestionList> scrappedQuestionLists = new ArrayList<>();
 
     @Builder(access = AccessLevel.PRIVATE)
     private User(String loginId,

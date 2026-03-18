@@ -8,8 +8,8 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.study.previewspring.user.entity.User;
 import org.study.previewspring.user.entity.UserQuestionList;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -37,16 +37,16 @@ public class QuestionList {
     private User user;
 
     @OneToMany(mappedBy = "questionList")
-    private Set<Question> questions = new LinkedHashSet<>();
+    private List<Question> questions = new ArrayList<>();
 
     @OneToMany(mappedBy = "questionList", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<UserQuestionList> scrappedByUsers = new LinkedHashSet<>();
+    private List<UserQuestionList> scrappedByUsers = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "question_list_category",
             joinColumns = @JoinColumn(name = "question_list_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories = new LinkedHashSet<>();
+    private List<Category> categories = new ArrayList<>();
 
     @Builder(access = AccessLevel.PRIVATE)
     private QuestionList(String title, Boolean isPublic, User user) {
