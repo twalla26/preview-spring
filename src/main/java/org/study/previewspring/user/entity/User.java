@@ -44,7 +44,7 @@ public class User {
     private List<QuestionList> questionLists = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<UserQuestionList> scrappedQuestionLists = new ArrayList<>();
+    private List<UserQuestionList> userQuestionLists = new ArrayList<>();
 
     @Builder(access = AccessLevel.PRIVATE)
     private User(String loginId,
