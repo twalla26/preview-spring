@@ -42,7 +42,7 @@ public class QuestionList {
     @OneToMany(mappedBy = "questionList", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserQuestionList> userQuestionLists = new ArrayList<>();
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "questionList", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<QuestionListCategory> questionListCategories = new ArrayList<>();
 
     @Builder(access = AccessLevel.PRIVATE)
