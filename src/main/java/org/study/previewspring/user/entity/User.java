@@ -2,7 +2,7 @@ package org.study.previewspring.user.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.study.previewspring.common.enums.LoginType;
+import org.study.previewspring.global.enums.LoginType;
 import org.study.previewspring.questionlist.entity.QuestionList;
 
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ public class User {
                 .loginId(loginId)
                 .passwordHash(passwordHash)
                 .username(username)
-                .loginType(LoginType.LOCAL)
+                .loginType(LoginType.local)
                 .build();
     }
 
@@ -77,7 +77,7 @@ public class User {
                 .githubId(githubId)
                 .passwordHash(passwordHash)
                 .username(username)
-                .loginType(LoginType.GITHUB)
+                .loginType(LoginType.github)
                 .build();
     }
 
