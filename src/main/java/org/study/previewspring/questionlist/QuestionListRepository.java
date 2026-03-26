@@ -20,6 +20,6 @@ public interface QuestionListRepository extends JpaRepository<QuestionList, Inte
             @Param("categoryId") Integer categoryId,
             Pageable pageable);
 
-    List<QuestionList> findAllByUserId(Integer userId);
+    Page<QuestionList> findAllByUserId(Integer userId, Pageable pageable);
 
 }

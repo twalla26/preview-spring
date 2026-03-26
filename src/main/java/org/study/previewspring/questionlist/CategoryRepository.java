@@ -22,4 +22,6 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
             "WHERE qlc.questionList.id = :questionListId")
     List<String> findCategoryNamesByQuestionListId(@Param("questionListId") Integer questionListId);
 
+    List<Category> findAllByNameIn(List<String> categoryNames);
+
 }
