@@ -60,4 +60,12 @@ public class QuestionList {
                 .build();
     }
 
+    public void updateTitle(String title) {
+        this.title = title;
+    }
+
+    public void updateIsPublic(Boolean isPublic) {
+        this.isPublic = isPublic;
+    }
+
 }
