@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    // 직접 던진 커스텀 비즈니스 예외 처리
+    // 1. 직접 던진 커스텀 비즈니스 예외 처리
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<Object> handleBusinessException(BusinessException e) {
         log.warn("BusinessException 발생: {}", e.getErrorCode().name());

@@ -13,7 +13,9 @@ public enum QuestionListErrorCode implements ErrorCode {
     PRIVATE_LIST_ACCESS_DENIED(HttpStatus.FORBIDDEN, "비공개 question list입니다. 접근 권한이 없습니다."),
     UNAUTHORIZED_ACTION(HttpStatus.FORBIDDEN, "해당 question list에 대한 권한이 없습니다."),
     CANNOT_SCRAP_OWN_LIST(HttpStatus.BAD_REQUEST, "자신의 question list는 스크랩할 수 없습니다."),
-    ALREADY_SCRAPPED(HttpStatus.BAD_REQUEST, "이미 스크랩한 question list입니다.");
+    ALREADY_SCRAPPED(HttpStatus.BAD_REQUEST, "이미 스크랩한 question list입니다."),
+    NOT_SCRAPPED_LIST(HttpStatus.BAD_REQUEST, "스크랩하지 않은 question list입니다."),
+    ;
 
     private final HttpStatus httpStatus;
     private final String message;
