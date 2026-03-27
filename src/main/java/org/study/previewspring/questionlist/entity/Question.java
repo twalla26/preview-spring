@@ -41,4 +41,8 @@ public class Question {
                 .build();
     }
 
+    public void updateContent(String content) {
+        this.content = content;
+    }
+
 }

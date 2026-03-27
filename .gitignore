@@ -41,3 +41,4 @@ application-secret.properties
 
 ### 기타 ###
 .DS_Store
+src/test/*

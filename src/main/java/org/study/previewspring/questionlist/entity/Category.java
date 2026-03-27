@@ -2,6 +2,10 @@ package org.study.previewspring.questionlist.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.study.previewspring.user.entity.UserQuestionList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -15,6 +19,9 @@ public class Category {
 
     @Column(name = "name", nullable = false, length = 20)
     private String name;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<QuestionListCategory> questionListCategories = new ArrayList<>();
 
     private Category(String name) {
         this.name = name;

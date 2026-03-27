@@ -2,11 +2,11 @@ package org.study.previewspring.user.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.study.previewspring.common.enums.LoginType;
+import org.study.previewspring.global.enums.LoginType;
 import org.study.previewspring.questionlist.entity.QuestionList;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -41,10 +41,10 @@ public class User {
     private String avatarUrl;
 
     @OneToMany(mappedBy = "user")
-    private Set<QuestionList> questionLists = new LinkedHashSet<>();
+    private List<QuestionList> questionLists = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<UserQuestionList> scrappedQuestionLists = new LinkedHashSet<>();
+    private List<UserQuestionList> userQuestionLists = new ArrayList<>();
 
     @Builder(access = AccessLevel.PRIVATE)
     private User(String loginId,
@@ -68,7 +68,7 @@ public class User {
                 .loginId(loginId)
                 .passwordHash(passwordHash)
                 .username(username)
-                .loginType(LoginType.LOCAL)
+                .loginType(LoginType.local)
                 .build();
     }
 
@@ -77,7 +77,7 @@ public class User {
                 .githubId(githubId)
                 .passwordHash(passwordHash)
                 .username(username)
-                .loginType(LoginType.GITHUB)
+                .loginType(LoginType.github)
                 .build();
     }
 
